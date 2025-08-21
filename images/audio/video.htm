@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/videos/riverview/relatedvideo?q=house+videos&&mid=D7E81B76E05A220BA7FDD7E81B76E05A220BA7FD&FORM=VAMGZC";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=847e599d3f08883b1444f0fde8fa24a2a70c6e6e68d6d3d972873453d30e8561JmltdHM9MTc1NDAwNjQwMA&ptn=3&ver=2&hsh=4&fclid=1379ae17-29f5-6eb1-0c2d-bb5d284e6fac&u=a1L3ZpZGVvcy9yaXZlcnZpZXcvcmVsYXRlZHZpZGVvP3E9aG91c2UrdmlkZW9zJiZtaWQ9RDdFODFCNzZFMDVBMjIwQkE3RkREN0U4MUI3NkUwNUEyMjBCQTdGRCZGT1JNPVZBTUdaQw&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
